@@ -2,11 +2,10 @@
 
 import type React from "react";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  FileText,
   LayoutDashboard,
   BookOpen,
   History,
@@ -30,6 +29,19 @@ export default function Dashboard() {
   const [profileModalOpen, setProfileModalOpen] = useState(false);
   const [settingsModalOpen, setSettingsModalOpen] = useState(false);
   const [dataRetention, setDataRetention] = useState(true);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [selectedFiles, setSelectedFiles] = useState<File[] | null>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      setSelectedFiles(Array.from(files));
+    }
+  };
+
+  const triggerFileInput = () => {
+    fileInputRef.current?.click();
+  };
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -64,7 +76,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className='flex h-screen bg-white'>
+    <div className='flex h-screen bg-[#FFFDF7]'>
       {/* Mobile sidebar toggle */}
       <div className='fixed top-4 left-4 z-50 md:hidden'>
         <button
@@ -376,28 +388,45 @@ export default function Dashboard() {
       )}
 
       {/* Main content */}
-      <div className='flex-1 overflow-auto p-4 md:p-8 ml-0 md:ml-20'>
-        <div className='max-w-4xl mx-auto'>
-          <h1 className='text-3xl font-bold text-slate-800 mb-8 text-center md:text-left'>
+      <div className='flex-1 overflow-auto p-4 md:p-8 ml-0 md:ml-20 flex items-center justify-center'>
+        <div className='min-w-4xl mx-auto'>
+          <h1 className='text-3xl font-bold text-center text-[#20474E] mb-8'>
             Get DesignDoc Presentations
           </h1>
 
           {/* Filter buttons */}
-          <div className='flex flex-wrap justify-center md:justify-start gap-2 mb-8'>
+          <div className='flex flex-wrap justify-center gap-2 mb-8'>
             <button
               onClick={() => handleFilterClick("presentation")}
-              className={`flex items-center px-4 py-2 rounded-full border ${
+              className={`flex items-center px-4 py-2 rounded-full text-[#20474E] border border-[#6E7A8A] ${
                 activeFilter === "presentation"
                   ? "bg-slate-100 border-slate-300"
                   : "border-slate-200 hover:bg-slate-50"
               }`}
             >
-              <FileText size={18} className='mr-2' />
-              Presentation
+              <svg
+                width='20'
+                height='20'
+                viewBox='0 0 20 20'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  fill-rule='evenodd'
+                  clip-rule='evenodd'
+                  d='M2 5C2 4.46957 2.21071 3.96086 2.58579 3.58579C2.96086 3.21071 3.46957 3 4 3H12C12.5304 3 13.0391 3.21071 13.4142 3.58579C13.7893 3.96086 14 4.46957 14 5V15C14 15.5304 14.2107 16.0391 14.5858 16.4142C14.9609 16.7893 15.4696 17 16 17H4C3.46957 17 2.96086 16.7893 2.58579 16.4142C2.21071 16.0391 2 15.5304 2 15V5ZM5 6H11V10H5V6ZM11 12H5V14H11V12Z'
+                  fill='#20474E'
+                />
+                <path
+                  d='M15 7H16C16.5304 7 17.0391 7.21071 17.4142 7.58579C17.7893 7.96086 18 8.46957 18 9V14.5C18 14.8978 17.842 15.2794 17.5607 15.5607C17.2794 15.842 16.8978 16 16.5 16C16.1022 16 15.7206 15.842 15.4393 15.5607C15.158 15.2794 15 14.8978 15 14.5V7Z'
+                  fill='#20474E'
+                />
+              </svg>
+              <span className='ml-2'>Presentation</span>
             </button>
             <button
               onClick={() => handleFilterClick("dashboard")}
-              className={`flex items-center px-4 py-2 rounded-full border ${
+              className={`flex items-center px-4 py-2 rounded-full text-[#20474E] border border-[#6E7A8A] ${
                 activeFilter === "dashboard"
                   ? "bg-slate-100 border-slate-300"
                   : "border-slate-200 hover:bg-slate-50"
@@ -408,7 +437,7 @@ export default function Dashboard() {
             </button>
             <button
               onClick={() => handleFilterClick("magazine")}
-              className={`flex items-center px-4 py-2 rounded-full border ${
+              className={`flex items-center px-4 py-2 rounded-full text-[#20474E] border border-[#6E7A8A] ${
                 activeFilter === "magazine"
                   ? "bg-slate-100 border-slate-300"
                   : "border-slate-200 hover:bg-slate-50"
@@ -420,34 +449,58 @@ export default function Dashboard() {
           </div>
 
           {/* Search input */}
+
           <form onSubmit={handleSearch} className='mb-8'>
-            <div className='relative'>
-              <input
-                type='text'
+            <div className='relative h-[150px] bg-[#FAFAFA] border border-[#6E7A8A] rounded-lg'>
+              <textarea
                 placeholder='How Can I Help You...'
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className='w-full p-4 pr-20 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
+                className='w-full h-full resize-none p-4 pr-20 text-black focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-[#20474E] rounded-lg'
               />
-              <div className='absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center space-x-2'>
+              {/* Action Buttons */}
+              <div className='absolute right-2 -bottom-2 transform -translate-y-1/2 flex items-center space-x-2'>
                 <button
                   type='button'
-                  className='p-2 text-slate-500 hover:text-[#20474E]'
+                  className='p-2 text-slate-500 hover:text-[#20474E] cursor-pointer'
+                  onClick={triggerFileInput}
                 >
                   <Paperclip size={20} />
                 </button>
                 <button
                   type='button'
                   className='p-2 text-slate-500 hover:text-[#20474E]'
+                  onClick={() => setSearchQuery("")}
                 >
                   <RotateCcw size={20} />
                 </button>
               </div>
+
+              {/* Hidden File Input */}
+              <input
+                type='file'
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                className='hidden'
+                multiple
+              />
             </div>
+
+            {/* Optional: Display selected files */}
+            {selectedFiles && selectedFiles.length > 0 && (
+              <div className='mt-2 text-sm text-[#20474E]'>
+                <strong>Selected File(s):</strong>
+                <ul className='list-disc ml-5'>
+                  {selectedFiles.map((file, idx) => (
+                    <li key={idx}>{file.name}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </form>
 
           {/* Content area - would be populated based on selected filter */}
-          <div className='bg-white rounded-lg p-6 min-h-[300px]'>
+          <div className='hidden bg-white rounded-lg p-6 min-h-[300px]'>
             {activeFilter === "presentation" && (
               <div className='space-y-4'>
                 <h2 className='text-xl font-semibold'>
