@@ -93,20 +93,12 @@ export default function Dashboard() {
               }`}
             >
               <Image
-                src='/logo.png'
+                src='/logo.svg'
                 alt='DesignDoc Logo'
-                width={40}
-                height={40}
+                width={400}
+                height={400}
                 className='mr-2'
               />
-              {(sidebarOpen || window.innerWidth < 768) && (
-                <div>
-                  <h1 className='font-bold text-slate-700 text-lg'>
-                    DesignDoc
-                  </h1>
-                  <p className='text-xs text-slate-500'>Text. Visualized.</p>
-                </div>
-              )}
             </div>
           </div>
 
@@ -116,23 +108,36 @@ export default function Dashboard() {
               <li>
                 <Link
                   href='#'
-                  className={`flex items-center px-4 py-2 rounded-full ${
+                  className={`flex items-center gap-2.5 px-4 py-2 rounded-full ${
                     activeTab === "home"
-                      ? "bg-orange-500 text-white"
+                      ? "bg-[#F99F04] text-white"
                       : "text-slate-700 hover:bg-slate-100"
                   }`}
                   onClick={() => setActiveTab("home")}
                 >
-                  <Home size={20} className='mr-3' />
+                  {/* <Home size={20} className='mr-3' /> */}
+                  <svg
+                    width='20'
+                    height='20'
+                    viewBox='0 0 20 20'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <path
+                      d='M10.7064 2.29303C10.5189 2.10556 10.2646 2.00024 9.99943 2.00024C9.73427 2.00024 9.47996 2.10556 9.29243 2.29303L2.29243 9.29303C2.11027 9.48163 2.00948 9.73423 2.01176 9.99643C2.01403 10.2586 2.1192 10.5094 2.30461 10.6948C2.49002 10.8803 2.74083 10.9854 3.00303 10.9877C3.26523 10.99 3.51783 10.8892 3.70643 10.707L3.99943 10.414V17C3.99943 17.2652 4.10479 17.5196 4.29232 17.7071C4.47986 17.8947 4.73421 18 4.99943 18H6.99943C7.26465 18 7.519 17.8947 7.70654 17.7071C7.89407 17.5196 7.99943 17.2652 7.99943 17V15C7.99943 14.7348 8.10479 14.4805 8.29232 14.2929C8.47986 14.1054 8.73421 14 8.99943 14H10.9994C11.2646 14 11.519 14.1054 11.7065 14.2929C11.8941 14.4805 11.9994 14.7348 11.9994 15V17C11.9994 17.2652 12.1048 17.5196 12.2923 17.7071C12.4799 17.8947 12.7342 18 12.9994 18H14.9994C15.2646 18 15.519 17.8947 15.7065 17.7071C15.8941 17.5196 15.9994 17.2652 15.9994 17V10.414L16.2924 10.707C16.481 10.8892 16.7336 10.99 16.9958 10.9877C17.258 10.9854 17.5088 10.8803 17.6942 10.6948C17.8797 10.5094 17.9848 10.2586 17.9871 9.99643C17.9894 9.73423 17.8886 9.48163 17.7064 9.29303L10.7064 2.29303Z'
+                      fill='#FAFAFA'
+                    />
+                  </svg>
+
                   {sidebarOpen && <span>Home</span>}
                 </Link>
               </li>
               <li>
                 <Link
                   href='#'
-                  className={`flex items-center px-4 py-2 rounded-full ${
+                  className={`flex items-center gap-2.5 px-4 py-2 rounded-full ${
                     activeTab === "presentation"
-                      ? "bg-orange-500 text-white"
+                      ? "bg-[#F99F04] text-white"
                       : "text-slate-700 hover:bg-slate-100"
                   }`}
                   onClick={() => setActiveTab("presentation")}
@@ -144,9 +149,9 @@ export default function Dashboard() {
               <li>
                 <Link
                   href='#'
-                  className={`flex items-center px-4 py-2 rounded-full ${
+                  className={`flex items-center gap-2.5 px-4 py-2 rounded-full ${
                     activeTab === "dashboard"
-                      ? "bg-orange-500 text-white"
+                      ? "bg-[#F99F04] text-white"
                       : "text-slate-700 hover:bg-slate-100"
                   }`}
                   onClick={() => setActiveTab("dashboard")}
@@ -158,9 +163,9 @@ export default function Dashboard() {
               <li>
                 <Link
                   href='#'
-                  className={`flex items-center px-4 py-2 rounded-full ${
+                  className={`flex items-center gap-2.5 px-4 py-2 rounded-full ${
                     activeTab === "magazine"
-                      ? "bg-orange-500 text-white"
+                      ? "bg-[#F99F04] text-white"
                       : "text-slate-700 hover:bg-slate-100"
                   }`}
                   onClick={() => setActiveTab("magazine")}
@@ -172,9 +177,9 @@ export default function Dashboard() {
               <li>
                 <Link
                   href='#'
-                  className={`flex items-center px-4 py-2 rounded-full ${
+                  className={`flex items-center gap-2.5 px-4 py-2 rounded-full ${
                     activeTab === "history"
-                      ? "bg-orange-500 text-white"
+                      ? "bg-[#F99F04] text-white"
                       : "text-slate-700 hover:bg-slate-100"
                   }`}
                   onClick={() => setActiveTab("history")}
@@ -192,7 +197,7 @@ export default function Dashboard() {
               className='p-2 hover:bg-slate-100 rounded-md'
               onClick={toggleProfileModal}
             >
-              <Grid size={20} className='text-slate-700' />
+              <Grid size={80} className='text-slate-700' />
             </button>
           </div>
         </div>
@@ -224,7 +229,7 @@ export default function Dashboard() {
 
             {/* Upgrade plan */}
             <div className='p-4 pt-3'>
-              <button className='bg-orange-500 hover:bg-orange-600 text-white w-full py-2 px-4 rounded-full flex items-center justify-between'>
+              <button className='bg-[#F99F04] hover:bg-orange-600 text-white w-full py-2 px-4 rounded-full flex items-center justify-between'>
                 <span>Upgrade Plan</span>
                 <ArrowRight size={16} />
               </button>
@@ -254,7 +259,7 @@ export default function Dashboard() {
 
       {/* Settings Modal */}
       {settingsModalOpen && (
-        <div className='fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50'>
+        <div className='fixed inset-0 bg-[#0000002a] bg-opacity-30 flex items-center justify-center z-50'>
           <div className='bg-white rounded-lg shadow-lg w-full max-w-md mx-4'>
             <div className='flex items-center justify-between p-4 border-b'>
               <h2 className='text-xl font-semibold text-slate-800'>Settings</h2>
@@ -300,7 +305,7 @@ export default function Dashboard() {
                 <button
                   onClick={toggleDataRetention}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${
-                    dataRetention ? "bg-orange-500" : "bg-slate-200"
+                    dataRetention ? "bg-[#F99F04]" : "bg-slate-200"
                   }`}
                 >
                   <span

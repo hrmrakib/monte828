@@ -86,7 +86,7 @@ export default function SignInPage() {
         <div className='hidden w-full md:w-1/2 md:flex items-center justify-center p-8'>
           <div className='max-w-xs'>
             <Image
-              src='/logo.png'
+              src='/logo.svg'
               alt='DesignDoc Logo'
               width={300}
               height={150}
