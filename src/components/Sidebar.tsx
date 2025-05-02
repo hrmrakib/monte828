@@ -2,16 +2,12 @@
 
 import type React from "react";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  LayoutDashboard,
-  BookOpen,
   History,
   Menu,
-  Paperclip,
-  RotateCcw,
   Grid,
   X,
   Settings,
@@ -23,25 +19,10 @@ import {
 
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("home");
-  const [activeFilter, setActiveFilter] = useState("presentation");
   const [profileModalOpen, setProfileModalOpen] = useState(false);
   const [settingsModalOpen, setSettingsModalOpen] = useState(false);
   const [dataRetention, setDataRetention] = useState(true);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [selectedFiles, setSelectedFiles] = useState<File[] | null>(null);
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (files && files.length > 0) {
-      setSelectedFiles(Array.from(files));
-    }
-  };
-
-  const triggerFileInput = () => {
-    fileInputRef.current?.click();
-  };
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -59,24 +40,13 @@ export default function Sidebar() {
     setSettingsModalOpen(false);
   };
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Searching for:", searchQuery);
-    // Implement search functionality here
-  };
-
-  const handleFilterClick = (filter: string) => {
-    setActiveFilter(filter);
-    console.log("Filter selected:", filter);
-    // Implement filter functionality here
-  };
-
   const toggleDataRetention = () => {
     setDataRetention(!dataRetention);
   };
 
   return (
-    <div className='flex h-screen bg-[#FFFDF7]'>
+    // <div className='flex h-screen bg-[#FFFDF7]'>
+    <div className='fixed w-[330px] left-0 bottom-0 top-0 bg-[#FFFDF7] border-2 border-rose-600'>
       {/* Mobile sidebar toggle */}
       <div className='fixed top-4 left-4 z-50 md:hidden'>
         <button
@@ -169,7 +139,7 @@ export default function Sidebar() {
               </li>
               <li>
                 <Link
-                  href='#'
+                  href='/dashboard'
                   className={`flex items-center gap-2.5 px-4 py-2 rounded-full ${
                     activeTab === "dashboard"
                       ? "bg-[#F99F04] text-white"
@@ -196,7 +166,7 @@ export default function Sidebar() {
               </li>
               <li>
                 <Link
-                  href='#'
+                  href='/magazine'
                   className={`flex items-center gap-2.5 px-4 py-2 rounded-full ${
                     activeTab === "magazine"
                       ? "bg-[#F99F04] text-white"
@@ -219,7 +189,7 @@ export default function Sidebar() {
               </li>
               <li>
                 <Link
-                  href='#'
+                  href='/history'
                   className={`flex items-center gap-2.5 px-4 py-2 rounded-full ${
                     activeTab === "history"
                       ? "bg-[#F99F04] text-white"
@@ -307,7 +277,7 @@ export default function Sidebar() {
 
       {/* Settings Modal */}
       {settingsModalOpen && (
-        <div className='fixed inset-0 bg-[#0000002a] bg-opacity-30 flex items-center justify-center z-50'>
+        <div className='fixed inset-0 bg-[#0000002a] bg-opacity-30 flex items-center justify-center z-[500]'>
           <div className='bg-white rounded-lg shadow-lg w-full max-w-md mx-4'>
             <div className='flex items-center justify-between p-4 border-b'>
               <h2 className='text-xl font-semibold text-slate-800'>Settings</h2>
@@ -386,8 +356,6 @@ export default function Sidebar() {
           </div>
         </div>
       )}
-
-      {/* Main content */}
     </div>
   );
 }

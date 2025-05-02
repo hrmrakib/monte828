@@ -645,7 +645,7 @@ export default function Dashboard() {
           {/* Search input */}
 
           <form onSubmit={handleSearch} className='mb-8'>
-            <div className='relative h-[150px] bg-[#FAFAFA] border border-[#6E7A8A] rounded-lg'>
+            <div className='relative h-[150px] bg-[#FAFAFA] border border-[#6E7A8A] rounded-lg z-0'>
               <textarea
                 placeholder='How Can I Help You...'
                 value={searchQuery}

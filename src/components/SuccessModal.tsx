@@ -16,14 +16,14 @@ export default function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
       // Prevent scrolling when modal is open
       document.body.style.overflow = "hidden";
 
-      // Auto-redirect after 3 seconds
-      //   const timer = setTimeout(() => {
-      //     router.push("/");
-      //   }, 3000);
+      //   Auto-redirect after 3 seconds
+      const timer = setTimeout(() => {
+        router.push("/");
+      }, 3000);
 
-      //   return () => {
-      //     clearTimeout(timer);
-      //   };
+      return () => {
+        clearTimeout(timer);
+      };
     } else {
       document.body.style.overflow = "auto";
     }
@@ -32,8 +32,8 @@ export default function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className='fixed inset-0 bg-[#0000000c] bg-opacity-50 flex items-center justify-center z-50'>
-      <div className='bg-white rounded-lg shadow-xl p-8 max-w-[670px] mx-auto text-center'>
+    <div className='fixed inset-0 bg-[#0000004b] bg-opacity-50 flex items-center justify-center z-50'>
+      <div className='bg-white rounded-lg shadow-xl p-8 min-w-[570px] max-w-[970px] h-[350px] text-center flex flex-col items-center justify-center'>
         <div className='w-24 h-24 mx-auto mb-6'>
           <div className='w-full h-full rounded-full flex items-center justify-center'>
             <svg
@@ -54,6 +54,7 @@ export default function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
             </svg>
           </div>
         </div>
+
         <h2 className='text-[32px] font-medium text-[#20474E] mb-2'>
           Successfully Subscribe
         </h2>
