@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import SuccessModal from "@/components/SuccessModal";
 
 export default function PaymentPage() {
   const router = useRouter();
@@ -23,6 +24,7 @@ export default function PaymentPage() {
     submit?: string;
   }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -106,8 +108,9 @@ export default function PaymentPage() {
       // In a real app, you would call your payment API here
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
+      setShowSuccessModal(true);
       // Redirect to success page or show success message
-      router.push("/payment/success");
+      //   router.push("/payment/success");
     } catch (error) {
       console.error("Payment failed:", error);
       setErrors({ submit: "Payment failed. Please try again." });
@@ -116,9 +119,14 @@ export default function PaymentPage() {
     }
   };
 
+  const handleCloseModal = () => {
+    setShowSuccessModal(false);
+    // router.push("/");
+  };
+
   return (
     <main className='min-h-screen w-full bg-gray-50 flex items-center justify-center p-4'>
-      <div className='w-full max-w-md mx-auto bg-white rounded-lg shadow-lg p-6 md:p-8'>
+      <div className='w-full max-w-[671px] mx-auto bg-white rounded-lg shadow-lg p-6 md:p-12'>
         <form onSubmit={handleSubmit} className='space-y-6'>
           {/* Pay button */}
           <button
@@ -207,12 +215,12 @@ export default function PaymentPage() {
                   errors.cardNumber ? "border-red-500" : "border-gray-300"
                 } rounded-md focus:outline-none focus:ring-1 focus:ring-teal-500`}
               />
-              <div className='absolute inset-y-0 right-3 flex items-center'>
+              <div className='absolute inset-y-0 -right-6 flex items-center'>
                 <Image
-                  src=''
+                  src='/payment-method.svg'
                   alt='Credit card icons'
-                  width={20}
-                  height={20}
+                  width={200}
+                  height={50}
                   className='h-5'
                 />
               </div>
@@ -336,6 +344,8 @@ export default function PaymentPage() {
           )}
         </form>
       </div>
+
+      <SuccessModal isOpen={showSuccessModal} onClose={handleCloseModal} />
     </main>
   );
 }
