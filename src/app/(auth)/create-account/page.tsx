@@ -104,11 +104,11 @@ export default function SignUpPage() {
   };
 
   return (
-    <main className='min-h-screen bg-white flex flex-col md:flex-row items-center justify-center p-4 md:p-8'>
+    <main className='border-2 border-blue-500 w-full min-h-screen bg-white flex flex-col md:flex-row items-center justify-center p-4 md:p-8'>
       <div className='container mx-auto'>
         <div className='w-full flex flex-col md:flex-row items-center justify-between'>
           {/* Logo Section */}
-          <div className='hidden w-full md:w-1/2 md:flex items-center justify-center p-8'>
+          <div className='hidden w-full md:w-1/2 md:flex items-center justify-start p-8 '>
             <div className='max-'>
               <Image
                 src='/logo.svg'

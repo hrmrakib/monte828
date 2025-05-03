@@ -16,6 +16,7 @@ import {
   ArrowRight,
   ChevronDown,
 } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -23,6 +24,8 @@ export default function Sidebar() {
   const [profileModalOpen, setProfileModalOpen] = useState(false);
   const [settingsModalOpen, setSettingsModalOpen] = useState(false);
   const [dataRetention, setDataRetention] = useState(true);
+
+  const pathname = usePathname();
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -44,9 +47,17 @@ export default function Sidebar() {
     setDataRetention(!dataRetention);
   };
 
+  if (
+    pathname === "/create-account" ||
+    pathname === "/signin" ||
+    pathname === "/verify-password"
+  ) {
+    return null;
+  }
+
   return (
     // <div className='flex h-screen bg-[#FFFDF7]'>
-    <div className='fixed w-[330px] left-0 bottom-0 top-0 bg-[#FFFDF7] border-2 border-rose-600'>
+    <div className='fixed left-0 bottom-0 top-0 bg-[#FFFDF7]'>
       {/* Mobile sidebar toggle */}
       <div className='fixed top-4 left-4 z-50 md:hidden'>
         <button
@@ -62,7 +73,7 @@ export default function Sidebar() {
         className={`fixed md:relative z-40 h-full bg-white shadow-md transition-all duration-300 ease-in-out ${
           sidebarOpen
             ? "w-64 translate-x-0"
-            : "w-0 -translate-x-full md:w-20 md:translate-x-0"
+            : "w-0 -translate-x-full md:w-64 md:translate-x-0"
         }`}
       >
         <div className='flex flex-col h-full'>
