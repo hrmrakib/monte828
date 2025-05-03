@@ -50,7 +50,9 @@ export default function Sidebar() {
   if (
     pathname === "/create-account" ||
     pathname === "/signin" ||
-    pathname === "/verify-password"
+    pathname === "/verify-password" ||
+    pathname === "/forget-password" ||
+    pathname === "/verify-otp"
   ) {
     return null;
   }

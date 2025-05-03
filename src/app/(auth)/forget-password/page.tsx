@@ -5,15 +5,13 @@ import type React from "react";
 import { useState, type FormEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Eye, EyeOff } from "lucide-react";
 
-export default function SignInPage() {
+export default function ForgetPassword() {
   const [formData, setFormData] = useState({
     name: "",
     password: "",
     remember: false,
   });
-  const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -75,10 +73,6 @@ export default function SignInPage() {
     }
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword((prev) => !prev);
-  };
-
   return (
     <main className='w-full min-h-screen flex flex-col md:flex-row items-center justify-center p-4 md:p-8'>
       <div className='container mx-auto flex flex-col md:flex-row items-center'>
@@ -99,10 +93,10 @@ export default function SignInPage() {
         <div className='w-full md:w-1/2 max-w-md'>
           <div className='text-center mb-6'>
             <h1 className='text-[32px] font-bold text-[#20474E] mb-2'>
-              Sign In Now
+              Forget Your Password
             </h1>
             <p className='text-[#20474E] text-lg'>
-              Welcome back! Select method log in
+              Welcome back! Select method to log in
             </p>
           </div>
 
@@ -114,16 +108,16 @@ export default function SignInPage() {
             <form onSubmit={handleSubmit} className='space-y-4'>
               <div>
                 <label
-                  htmlFor='name'
+                  htmlFor='email'
                   className='block text-[#20474E] text-lg font-medium mb-1'
                 >
-                  Name
+                  Email
                 </label>
                 <input
-                  type='text'
-                  id='name'
-                  name='name'
-                  placeholder='Full name...'
+                  type='email'
+                  id='email'
+                  name='email'
+                  placeholder='Enter your email'
                   value={formData.name}
                   onChange={handleChange}
                   className={`w-full p-3 border placeholder:text-[#20474E] ${
@@ -135,63 +129,6 @@ export default function SignInPage() {
                 )}
               </div>
 
-              <div>
-                <label
-                  htmlFor='password'
-                  className='block text-[#20474E] text-lg font-medium mb-1'
-                >
-                  Password
-                </label>
-                <div className='relative'>
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    id='password'
-                    name='password'
-                    placeholder='Enter your password...'
-                    value={formData.password}
-                    onChange={handleChange}
-                    className={`w-full p-3 border placeholder:text-[#20474E] ${
-                      errors.password ? "border-red-500" : "border-slate-300"
-                    } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
-                  />
-                  <button
-                    type='button'
-                    onClick={togglePasswordVisibility}
-                    className='absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-500'
-                  >
-                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                  </button>
-                </div>
-                {errors.password && (
-                  <p className='text-red-500 text-sm mt-1'>{errors.password}</p>
-                )}
-              </div>
-
-              <div className='flex items-center justify-between'>
-                <div className='flex items-center'>
-                  <input
-                    type='checkbox'
-                    id='remember'
-                    name='remember'
-                    checked={formData.remember}
-                    onChange={handleChange}
-                    className='w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500'
-                  />
-                  <label
-                    htmlFor='remember'
-                    className='ml-2 text-lg text-[#20474E]'
-                  >
-                    Remember
-                  </label>
-                </div>
-                <Link
-                  href='/forgot-password'
-                  className='text-lg font-medium text-[#F99F04] hover:underline'
-                >
-                  Forget Password?
-                </Link>
-              </div>
-
               {errors.submit && (
                 <p className='text-red-500 text-sm'>{errors.submit}</p>
               )}
@@ -201,19 +138,19 @@ export default function SignInPage() {
                 disabled={isSubmitting}
                 className='w-full bg-[#F99F04] hover:bg-[#f99f04d2] text-[#FAFAFA] text-lg font-medium py-3 px-4 rounded-md transition duration-200 ease-in-out'
               >
-                {isSubmitting ? "Signing In..." : "Sign In Now"}
+                {isSubmitting ? "Reset Password ..." : "Reset Password"}
               </button>
             </form>
           )}
 
           <div className='text-center mt-6'>
             <p className='text-[#20474E] text-lg'>
-              Don&apos;t have an account?{" "}
+              Back to{" "}
               <Link
-                href='/signup'
+                href='/signin'
                 className='text-[#20474E] text-lg font-medium hover:underline'
               >
-                Sign Up Now
+                Sign In
               </Link>
             </p>
           </div>

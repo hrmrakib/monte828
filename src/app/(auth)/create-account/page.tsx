@@ -123,10 +123,10 @@ export default function SignUpPage() {
           {/* Form Section */}
           <div className='w-full md:w-1/2 max-w-md'>
             <div className='text-center mb-6'>
-              <h1 className='text-3xl font-bold text-slate-800 mb-2'>
+              <h1 className='text-[32px] font-bold text-[#20474E] mb-2'>
                 Create an Account
               </h1>
-              <p className='text-slate-600'>
+              <p className='text-[#20474E] text-lg'>
                 Sign up Now and unlock exclusive access!
               </p>
             </div>
@@ -139,7 +139,10 @@ export default function SignUpPage() {
             ) : (
               <form onSubmit={handleSubmit} className='space-y-4'>
                 <div>
-                  <label htmlFor='name' className='block text-slate-700 mb-1'>
+                  <label
+                    htmlFor='name'
+                    className='block text-[#20474E] text-lg font-medium mb-1'
+                  >
                     Name
                   </label>
                   <input
@@ -151,7 +154,7 @@ export default function SignUpPage() {
                     onChange={handleChange}
                     className={`w-full p-3 border ${
                       errors.name ? "border-red-500" : "border-slate-300"
-                    } rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500`}
+                    } rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 placeholder:text-[#20474E]`}
                   />
                   {errors.name && (
                     <p className='text-red-500 text-sm mt-1'>{errors.name}</p>
@@ -159,7 +162,10 @@ export default function SignUpPage() {
                 </div>
 
                 <div>
-                  <label htmlFor='email' className='block text-slate-700 mb-1'>
+                  <label
+                    htmlFor='email'
+                    className='block text-[#20474E] text-lg font-medium mb-1'
+                  >
                     Email
                   </label>
                   <input
@@ -171,7 +177,7 @@ export default function SignUpPage() {
                     onChange={handleChange}
                     className={`w-full p-3 border ${
                       errors.email ? "border-red-500" : "border-slate-300"
-                    } rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500`}
+                    } rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 placeholder:text-[#20474E]`}
                   />
                   {errors.email && (
                     <p className='text-red-500 text-sm mt-1'>{errors.email}</p>
@@ -181,7 +187,7 @@ export default function SignUpPage() {
                 <div>
                   <label
                     htmlFor='password'
-                    className='block text-slate-700 mb-1'
+                    className='block text-[#20474E] text-lg font-medium mb-1'
                   >
                     Password
                   </label>
@@ -195,7 +201,7 @@ export default function SignUpPage() {
                       onChange={handleChange}
                       className={`w-full p-3 border ${
                         errors.password ? "border-red-500" : "border-slate-300"
-                      } rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500`}
+                      } rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 placeholder:text-[#20474E]`}
                     />
                     <button
                       type='button'
@@ -220,12 +226,12 @@ export default function SignUpPage() {
                       name='agreeToTerms'
                       checked={formData.agreeToTerms}
                       onChange={handleChange}
-                      className='w-4 h-4 text-teal-600 border-slate-300 rounded focus:ring-teal-500'
+                      className='w-4 h-4 text-teal-600 border-slate-300 rounded focus:ring-teal-500 placeholder:text-[#20474E]'
                     />
                   </div>
                   <label
                     htmlFor='agreeToTerms'
-                    className='ml-2 text-sm text-slate-700'
+                    className='ml-2 text-lg text-[#20474E]'
                   >
                     I agree to the{" "}
                     <Link
@@ -256,7 +262,7 @@ export default function SignUpPage() {
                 <button
                   type='submit'
                   disabled={isSubmitting}
-                  className='w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-4 rounded-md transition duration-200 ease-in-out'
+                  className='w-full bg-[#F99F04] hover:bg-[#f99f04bd] text-[#FAFAFA] text-lg font-medium py-3 px-4 rounded-md transition duration-200 ease-in-out'
                 >
                   {isSubmitting ? "Creating Account..." : "Create Account"}
                 </button>
@@ -321,11 +327,11 @@ export default function SignUpPage() {
             )}
 
             <div className='text-center mt-6'>
-              <p className='text-slate-600'>
+              <p className='text-[#20474E] text-lg'>
                 I have an account?{" "}
                 <Link
                   href='/signin'
-                  className='text-teal-600 font-medium hover:underline'
+                  className='text-[#20474E] text-lg font-medium hover:underline'
                 >
                   Sign In Now
                 </Link>
