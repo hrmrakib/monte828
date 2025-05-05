@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -31,14 +30,14 @@ export function SettingsDialog({ open, onOpenChange }: SettingsDialogProps) {
       <DialogContent className='sm:max-w-md'>
         <DialogHeader className='flex flex-row items-center justify-between border-b pb-2'>
           <DialogTitle className='text-xl'>Settings</DialogTitle>
-          <Button
+          {/* <Button
             variant='ghost'
             size='icon'
             onClick={() => onOpenChange(false)}
           >
             <X className='h-4 w-4' />
             <span className='sr-only'>Close</span>
-          </Button>
+          </Button> */}
         </DialogHeader>
         <div className='space-y-6 py-4'>
           <div className='flex items-center justify-between'>
@@ -76,8 +75,8 @@ export function SettingsDialog({ open, onOpenChange }: SettingsDialogProps) {
             I&apos;d be happy to create your presentation, but I still need some
             basic information to make it relevant. Could you please tell me at
             least what industry your company is in and a brief description of
-            your company&apos;s vision or sales focus? This would help me create a
-            more tailored and effective presentation for you.
+            your company&apos;s vision or sales focus? This would help me create
+            a more tailored and effective presentation for you.
           </p>
 
           <Button

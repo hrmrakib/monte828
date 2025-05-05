@@ -64,15 +64,15 @@ export function UserProfileDropdown({ trigger }: UserProfileDropdownProps) {
           <div className='p-2'>
             <Button
               variant='outline'
-              className='w-full justify-between bg-orange-500 text-white hover:bg-orange-600'
+              className='w-full justify-between bg-[#F99F04] text-[#FAFAFA] hover:bg-[#f99f04c7] rounded-full'
             >
-              <span>Upgrade Plan</span>
+              <span className='px-2'>Upgrade Plan</span>
               <ExternalLink className='ml-2 h-4 w-4' />
             </Button>
           </div>
           <div className='p-2'>
-            <div className='rounded-md bg-orange-100 px-3 py-2'>
-              <span className='text-sm font-medium text-orange-800'>
+            <div className='bg-[#F99F04] text-[#FAFAFA] hover:bg-[#f99f04c7] rounded-full px-3 py-2'>
+              <span className='text-sm font-medium text-[#FAFAFA]'>
                 Credits: 0
               </span>
             </div>
