@@ -129,7 +129,6 @@ export default function HistoryPage() {
 
   const handleRerunQuery = (query: string) => {
     // In a real app, this would trigger the query to be run again
-    alert(`Re-running query: ${query}`);
     router.push("/history/hgjkhio329852-vdklzw");
   };
 

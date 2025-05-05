@@ -12,7 +12,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
 import { SettingsDialog } from "./SettingsDialog";
 
 interface UserProfileDropdownProps {
@@ -29,12 +28,10 @@ export function UserProfileDropdown({ trigger }: UserProfileDropdownProps) {
         <DropdownMenuContent className='w-64' align='end' sideOffset={5}>
           <div className='flex items-center gap-3 p-3'>
             <Avatar className='h-10 w-10'>
-              <AvatarImage
-                src='/placeholder.svg?height=40&width=40'
-                alt='User'
-              />
+              <AvatarImage src='/user.jpg' alt='User' />
               <AvatarFallback>AM</AvatarFallback>
             </Avatar>
+
             <div className='flex flex-1 flex-col'>
               <div className='flex items-center gap-1'>
                 <span className='text-sm font-medium'>Arjun Mazumder</span>
@@ -60,16 +57,19 @@ export function UserProfileDropdown({ trigger }: UserProfileDropdownProps) {
               </span>
             </div>
           </div>
+
           <DropdownMenuSeparator />
+
           <div className='p-2'>
-            <Button
-              variant='outline'
-              className='w-full justify-between bg-[#F99F04] text-[#FAFAFA] hover:bg-[#f99f04c7] rounded-full'
+            <Link
+              href='/subscription'
+              className='w-full flex items-center justify-between bg-[#F99F04] text-[#FAFAFA] hover:bg-[#f99f04c7] rounded-full px-3 py-2'
             >
               <span className='px-2'>Upgrade Plan</span>
               <ExternalLink className='ml-2 h-4 w-4' />
-            </Button>
+            </Link>
           </div>
+
           <div className='p-2'>
             <div className='bg-[#F99F04] text-[#FAFAFA] hover:bg-[#f99f04c7] rounded-full px-3 py-2'>
               <span className='text-sm font-medium text-[#FAFAFA]'>
