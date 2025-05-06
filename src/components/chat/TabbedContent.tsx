@@ -21,7 +21,7 @@ export function TabbedContent({
   total,
 }: TabbedContentProps) {
   const [activeTab, setActiveTab] = useState("thinking");
-
+  console.log("active tab: ");
   return (
     <div className='overflow-hidden'>
       <Tabs
